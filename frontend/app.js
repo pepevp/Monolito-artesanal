@@ -82,9 +82,40 @@ taskForm.addEventListener('submit', async (e) => {
     }
 });
 
+// Custom Confirm Modal Logic
+const confirmModal = document.getElementById('confirmModal');
+const confirmBtn = document.getElementById('confirmBtn');
+const cancelBtn = document.getElementById('cancelBtn');
+
+function showConfirm() {
+    return new Promise((resolve) => {
+        confirmModal.classList.add('active');
+        
+        const handleConfirm = () => {
+            cleanup();
+            resolve(true);
+        };
+        
+        const handleCancel = () => {
+            cleanup();
+            resolve(false);
+        };
+        
+        const cleanup = () => {
+            confirmBtn.removeEventListener('click', handleConfirm);
+            cancelBtn.removeEventListener('click', handleCancel);
+            confirmModal.classList.remove('active');
+        };
+        
+        confirmBtn.addEventListener('click', handleConfirm);
+        cancelBtn.addEventListener('click', handleCancel);
+    });
+}
+
 // Delete a task
 async function deleteTask(id) {
-    if (!confirm('¿Estás seguro de eliminar esta tarea y enviarla al histórico?')) return;
+    const isConfirmed = await showConfirm();
+    if (!isConfirmed) return;
 
     try {
         const response = await fetch(`${API_URL}/${id}`, {
