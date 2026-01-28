@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevTask Tracker | El Monolito Artesanal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>DevTask<span>Tracker</span></h1>
+            <p class="subtitle">Gestión de Tareas para Desarrolladores</p>
+        </header>
+
+        <main>
+            <section class="task-form-section">
+                <div class="card">
+                    <h2>Nueva Tarea</h2>
+                    <form id="taskForm">
+                        <div class="form-group">
+                            <label for="titulo">Título de la Tarea</label>
+                            <input type="text" id="titulo" placeholder="Ej: Implementar script" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" placeholder="Detalles de la tarea..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="tecnologia">Tecnología</label>
+                                <select id="tecnologia" required>
+                                    <option value="" disabled selected>Selecciona...</option>
+                                    <option value="JS">JavaScript</option>
+                                    <option value="Node">Node.js</option>
+                                    <option value="React">React</option>
+                                    <option value="Java">Java</option>
+                                    <option value="Python">Python</option>
+                                    <option value="CSS">CSS/HTML</option>
+                                    <option value="MongoDB">MongoDB</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="estado">Estado Inicial</label>
+                                <select id="estado">
+                                    <option value="pending">Pendiente</option>
+                                    <option value="done">Completada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" id="saveBtn">Guardar Tarea</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="task-list-section">
+                <div class="list-header">
+                    <h2>Tareas Pendientes</h2>
+                    <span id="taskCount" class="badge">0</span>
+                </div>
+                <div id="taskList" class="task-grid">
+                    <!-- Tareas cargadas dinámicamente -->
+                    <div class="loader">Cargando tareas...</div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 El Monolito Artesanal</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
